@@ -1,21 +1,39 @@
-#include<stdio.h>
-#include<string.h>
-int main()
-{
-    char array[100];
-    fgets(array,sizeof(array),stdin);
-    for(int i =0; i<strlen(array);i++)
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+int power(int a);
+
+int main() {
+
+    int N;
+    int digit;
+    int count = 0;
+    int array[32];
+    scanf("%d",&N);
+    while(N!=0)
     {
-        if(array[i]==' ')
+        digit = N%2;
+        array[count]=digit;
+        count++;
+        N/=2;
+    }
+    for(int i = count-1; i>=0; i--)
+    {
+        if(array[i]==0)
         {
-            for(int j = i; j<strlen(array); j++)
-            {
-                array[j]=array[j+1];
-            }
+            continue;
         }
+        printf("%d ",array[i]*power(i));
+
     }
-    for(int i = 0; i<strlen(array);i++)
-    {
-        printf("%c",array[i]);
-    }
+
+    return 0;
+}
+int power(int a)
+{
+
+    if(a==0)
+        return 1;
+    return 2*power(a-1);
 }
